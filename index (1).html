@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEUROVA | Human Sustainability OS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+:root{
+--cyan:#00F0FF;
+--purple:#9C4DFF;
+--dark:#050816;
+--card:#101A2D;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Outfit',sans-serif;
+}
+
+body{
+background:var(--dark);
+color:white;
+overflow-x:hidden;
+}
+
+.hero{
+padding:120px 8%;
+text-align:center;
+background:
+radial-gradient(circle at center,
+rgba(0,240,255,.15),
+transparent 50%);
+}
+
+.hero h1{
+font-size:70px;
+font-weight:900;
+line-height:1.1;
+}
+
+.hero span{
+background:linear-gradient(90deg,var(--cyan),var(--purple));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+max-width:900px;
+margin:auto;
+margin-top:20px;
+color:#ccc;
+line-height:1.8;
+}
+
+.btn{
+padding:18px 35px;
+border:none;
+margin-top:30px;
+cursor:pointer;
+border-radius:50px;
+background:linear-gradient(90deg,var(--cyan),var(--purple));
+font-weight:700;
+color:white;
+}
+
+.section{
+padding:100px 8%;
+}
+
+.title{
+font-size:45px;
+margin-bottom:50px;
+font-weight:800;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+padding:30px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.counter{
+font-size:60px;
+font-weight:900;
+color:var(--cyan);
+}
+
+input[type=range]{
+width:100%;
+margin-top:20px;
+}
+
+.metric{
+font-size:28px;
+margin-top:10px;
+font-weight:700;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table td,table th{
+padding:15px;
+border:1px solid rgba(255,255,255,.1);
+}
+
+footer{
+padding:50px;
+text-align:center;
+background:#08111d;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>
+REDEFINING
+<span>HUMAN VALUE</span>
+IN THE FUTURE ECONOMY
+</h1>
+
+<p>
+The World's First Human Sustainability Operating System.
+Transforming wellbeing into measurable economic value.
+</p>
+
+<button class="btn">
+Start Enterprise Assessment
+</button>
+
+</section>
+
+<!-- GLOBAL COUNTER -->
+
+<section class="section">
+
+<h2 class="title">
+Global Human Value Index
+</h2>
+
+<div class="card">
+
+<h3>Economic Loss Due To Burnout Today</h3>
+
+<div class="counter" id="counter">
+$3,847,228,912
+</div>
+
+</div>
+
+</section>
+
+<!-- HSI -->
+
+<section class="section">
+
+<h2 class="title">
+Human Sustainability Index
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<canvas id="hsiChart"></canvas>
+</div>
+
+<div class="card">
+
+<h3>HSI Formula</h3>
+
+<p>30% Cognitive Health</p>
+<p>25% Recovery Quality</p>
+<p>20% Workload Balance</p>
+<p>15% Social Support</p>
+<p>10% Retention Stability</p>
+
+<h1 style="margin-top:20px;color:#00F0FF;">
+87 / 100
+</h1>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FUTURE ECONOMY SIMULATOR -->
+
+<section class="section">
+
+<h2 class="title">
+Future Economy Simulator
+</h2>
+
+<div class="card">
+
+<label>Working Hours</label>
+
+<input type="range"
+min="4"
+max="12"
+value="8"
+id="hours">
+
+<div class="metric" id="productivity">
+Productivity: 80
+</div>
+
+<div class="metric" id="burnout">
+Burnout Risk: 40%
+</div>
+
+<div class="metric" id="profit">
+Profit Score: 90
+</div>
+
+</div>
+
+</section>
+
+<!-- DIGITAL TWIN -->
+
+<section class="section">
+
+<h2 class="title">
+Human Digital Twin
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h1>🧠</h1>
+
+<h2>Employee A</h2>
+
+<p>Current Energy: 84%</p>
+<p>Predicted Energy: 76%</p>
+<p>Burnout Probability: 12%</p>
+<p>Retention Probability: 91%</p>
+
+</div>
+
+<div class="card">
+
+<canvas id="energyChart"></canvas>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- AI ECONOMIST -->
+
+<section class="section">
+
+<h2 class="title">
+AI Human Economist
+</h2>
+
+<div class="card">
+
+<input
+id="question"
+placeholder="Ask Neurova AI..."
+style="width:100%;padding:15px;border-radius:10px;border:none;">
+
+<button class="btn" onclick="analyze()">
+Analyze
+</button>
+
+<div id="result"
+style="margin-top:25px;font-size:20px;">
+</div>
+
+</div>
+
+</section>
+
+<!-- BUSINESS IMPACT -->
+
+<section class="section">
+
+<h2 class="title">
+Business Impact Dashboard
+</h2>
+
+<div class="card">
+
+<table>
+
+<tr>
+<th>Metric</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+
+<tr>
+<td>Burnout</td>
+<td>62%</td>
+<td>29%</td>
+</tr>
+
+<tr>
+<td>Retention</td>
+<td>78%</td>
+<td>91%</td>
+</tr>
+
+<tr>
+<td>Productivity</td>
+<td>72</td>
+<td>89</td>
+</tr>
+
+<tr>
+<td>Profit Margin</td>
+<td>11%</td>
+<td>17%</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- SCIENCE -->
+
+<section class="section">
+
+<h2 class="title">
+Scientific Foundation
+</h2>
+
+<div class="grid">
+
+<div class="card">
+WHO Burnout Framework
+</div>
+
+<div class="card">
+Maslach Burnout Inventory
+</div>
+
+<div class="card">
+Circadian Neuroscience
+</div>
+
+<div class="card">
+320+ Research Papers
+</div>
+
+</div>
+
+</section>
+
+<!-- ROADMAP -->
+
+<section class="section">
+
+<h2 class="title">
+Product Roadmap
+</h2>
+
+<div class="grid">
+
+<div class="card">
+2026<br>
+Human Sustainability Simulator
+</div>
+
+<div class="card">
+2027<br>
+AI Burnout Prediction Engine
+</div>
+
+<div class="card">
+2028<br>
+Human Digital Twin
+</div>
+
+<div class="card">
+2029<br>
+Workforce Optimization Suite
+</div>
+
+<div class="card">
+2030<br>
+Global Human Value Index
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="section">
+
+<div class="card"
+style="text-align:center;">
+
+<h1>
+Calculate Your Human Sustainability Score
+</h1>
+
+<button class="btn">
+Run Assessment
+</button>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2>NEUROVA</h2>
+
+<p>
+The Future Economy Values Humans, Not Just Productivity.
+</p>
+
+</footer>
+
+<script>
+
+let value=3847228912;
+
+setInterval(()=>{
+value+=Math.floor(Math.random()*10000);
+
+document.getElementById("counter")
+.innerHTML="$"+value.toLocaleString();
+},100);
+
+const ctx=document.getElementById('hsiChart');
+
+new Chart(ctx,{
+type:'radar',
+data:{
+labels:[
+'Cognitive',
+'Recovery',
+'Balance',
+'Social',
+'Retention'
+],
+datasets:[{
+data:[90,82,76,88,91]
+}]
+}
+});
+
+const energy=document.getElementById('energyChart');
+
+new Chart(energy,{
+type:'line',
+data:{
+labels:['Mon','Tue','Wed','Thu','Fri'],
+datasets:[{
+data:[84,82,78,80,76]
+}]
+}
+});
+
+hours.oninput=function(){
+
+let h=this.value;
+
+document.getElementById("productivity")
+.innerHTML=
+"Productivity: "+(h*10);
+
+document.getElementById("burnout")
+.innerHTML=
+"Burnout Risk: "+(h*8)+"%";
+
+document.getElementById("profit")
+.innerHTML=
+"Profit Score: "+(h*12);
+
+}
+
+function analyze(){
+
+let q=document.getElementById("question").value;
+
+document.getElementById("result").innerHTML=
+"AI Analysis: Reducing meeting load by 20% may increase productivity by 11.8% and reduce burnout by 14%.";
+}
+
+</script>
+
+</body>
+</html>
